@@ -7,7 +7,7 @@ node {
   }
 
   stage('SonarQube analysis') {
-    withSonarQubeEnv(credentialsId: 'SonarCloud', installationName: 'Sonarcloud') { // You can override the credential to be used
+    withSonarQubeEnv(credentialsId: 'SonarCloud', installationName: 'SonarCloud') { // You can override the credential to be used
       sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
     }
   }
