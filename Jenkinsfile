@@ -6,8 +6,10 @@ node {
     } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
   }
 
-  stage ('Tests- Static code analysis') {
-      
+  stage('SonarQube analysis') {
+    withSonarQubeEnv(credentialsId: 'SonarCloud', installationName: 'Sonarcloud') { // You can override the credential to be used
+      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+    }
   }
 
   stage ('Build docker image & push to registry') {
