@@ -2,7 +2,7 @@ node {
   stage ('Build Jar  ') {
     git url: 'https://github.com/gansky770/ciexercise.git'
     withMaven {
-      sh "mvn clean verify"
+      sh "mvn -s $MAVEN_SETTINGS clean verify"
     } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
   }
 
