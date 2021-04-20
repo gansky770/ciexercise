@@ -14,7 +14,7 @@ node {
 
   stage ('Build and push docker image') {
     docker.withRegistry('https://index.docker.io/v1/','dockerhub') {
-      def app= docker.build("gansky/ciexercise:latest", '.').push()
+      def app= docker.build("gansky/ciexercise:latest", './Dockerfile').push()
      }
   }
 }
