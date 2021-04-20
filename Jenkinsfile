@@ -15,13 +15,7 @@ node {
   stage ('Build and push docker image') {
     //docker.withRegistry('https://index.docker.io/v1/','dockerhub') {
       //docker.build("gansky/ciexercise:latest", '.').push()
-       dockerBuildAndPublish {
-            repositoryName('gansky/ciexercise')
-            tag('${BUILD_TIMESTAMP}-${GIT_REVISION,length=7}')
-            registryCredentials('docker-hub')
-            forcePull(false)
-            createFingerprints(false)
-            skipDecorate() 
+      
      }
   }
 }
