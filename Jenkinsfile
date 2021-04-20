@@ -15,7 +15,7 @@ node {
   stage ('Build and push docker image') {
     docker.withRegistry('https://index.docker.io/v1/','dockerhub') {
       //docker.build("gansky/ciexercise:latest", '.').push()
-        docker.pull("gansky/spring-petclinic")
+        
      }
   }
 }
