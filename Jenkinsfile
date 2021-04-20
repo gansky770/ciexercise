@@ -1,6 +1,6 @@
 node {
   stage ('Build ,Test,SonarQube analysis ') {
-    git url: 'https://github.com/gansky770/ciexercise.git'
+    checkout scm
     withMaven(maven: 'Maven-3.6.3', mavenSettingsConfig: 'bed37eaa-e653-4633-b495-f16d9d3d3b93') {
       sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar"
     } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
