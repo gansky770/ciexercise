@@ -1,5 +1,5 @@
 node {
-  stage ('Build Jar  ') {
+  stage ('Build ,Test,SonarQube analysis ') {
     git url: 'https://github.com/gansky770/ciexercise.git'
     withMaven(maven: 'Maven-3.6.3', mavenSettingsConfig: 'bed37eaa-e653-4633-b495-f16d9d3d3b93') {
       sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -"
@@ -12,7 +12,9 @@ node {
     //}
  // }
 
-  stage ('SonarQube analysis') {
-      
+  stage ('Build and push docker image') {
+      docker.withRegistry('https://index.docker.io/v1/','dockerhub') {
+      docker.build("gansky/spring-petclinic:latest", '.').push()
+     }
   }
 }
